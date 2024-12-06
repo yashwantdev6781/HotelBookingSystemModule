@@ -9,6 +9,14 @@ import lombok.Setter;
 @Entity
 @Table(name = "property")
 public class Property {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -38,6 +46,72 @@ public class Property {
     private Integer guests;
 
     @Column(name = "nightly_price", nullable = false)
-    private String nightlyPrice;
+    private Integer nightlyPrice;
+
+    public Integer getNightlyPrice() {
+        return nightlyPrice;
+    }
+
+    public void setNightlyPrice(Integer nightlyPrice) {
+        this.nightlyPrice = nightlyPrice;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
+
+    public Integer getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(Integer bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public Integer getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(Integer bathrooms) {
+        this.bathrooms = bathrooms;
+    }
+
+    public Integer getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Integer beds) {
+        this.beds = beds;
+    }
+
+    public Integer getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Integer guests) {
+        this.guests = guests;
+    }
+
+
 
 }
