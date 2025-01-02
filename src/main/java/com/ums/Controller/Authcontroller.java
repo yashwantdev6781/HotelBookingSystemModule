@@ -5,10 +5,12 @@ import com.ums.entity.AppUser;
 import com.ums.payload.JwtResponse;
 import com.ums.payload.LoginDto;
 import com.ums.payload.UserDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +23,13 @@ public class Authcontroller {
     }
 
     @PostMapping("/{addUser}")
-    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto){
+    public ResponseEntity<?> addUser(@Valid @RequestBody UserDto userDto,
+                                     BindingResult bindingResult
+
+    ){
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldError().getDefaultMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         UserDto dto = userService.addUser(userDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
 
